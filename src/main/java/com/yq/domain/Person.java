@@ -1,4 +1,3 @@
-
 package com.yq.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

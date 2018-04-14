@@ -1,6 +1,3 @@
-
-
-
 package com.yq.domain;
 
 import lombok.NoArgsConstructor;
@@ -30,5 +27,4 @@ public class Movie{
         this.category = category;
         this.revenue = revenue;
     }
-
 }

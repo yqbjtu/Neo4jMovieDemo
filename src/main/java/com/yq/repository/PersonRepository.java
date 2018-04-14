@@ -14,7 +14,4 @@ public interface PersonRepository extends Neo4jRepository<Person, Long> {
 	Person findByfirstName(@Param("firstName") String firstName);
 
 	Collection<Person> findByfirstNameLike(@Param("firstName") String firstName);
-
-	//MATCH (n:CategoryModel)-[r:BELONG_TO]->() RETURN n LIMIT 25
-
 }

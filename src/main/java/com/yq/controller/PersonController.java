@@ -83,15 +83,15 @@ public class PersonController {
         //导演了《长城B》
         Person zymPerson  = new Person("ZhangYiMouP", "YiMou", 176);
 
-        personRepository.save(clPerson);
-        personRepository.save(jtPerson);
-        personRepository.save(ldhPerson);
-        personRepository.save(zymPerson);
+//        personRepository.save(clPerson);
+//        personRepository.save(jtPerson);
+//        personRepository.save(ldhPerson);
+//        personRepository.save(zymPerson);
 
         Movie jgMovie = new Movie("建国大业A" , "history", 9000);
-        movieRepository.save(jgMovie);
+       // movieRepository.save(jgMovie);
         Movie clMovie = new Movie("长城B", "science fiction", 5000);
-        movieRepository.save(clMovie);
+        //movieRepository.save(clMovie);
 
         clPerson.addActMovie(jgMovie);
 

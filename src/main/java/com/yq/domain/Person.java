@@ -4,19 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.NoArgsConstructor;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.Labels;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
-import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yqbjtu
  * @version 2018/4/6 21:42
  */
 @lombok.Data
+//Entities handled by the OGM must have one empty public constructor to allow the library to construct the objects.
 @NoArgsConstructor
 @NodeEntity
 public class Person{
@@ -24,6 +25,7 @@ public class Person{
     @GeneratedValue
     private Long id;
 
+    //Fields on the entity are by default mapped to properties of the node
     private String firstName;
     private String lastName;
     private int height;
@@ -41,7 +43,10 @@ public class Person{
     @Relationship(type = "DIRECTED", direction = Relationship.OUTGOING)
     private List<Movie> dMovies;
 
-    //Entities handled by the OGM must have one empty public constructor to allow the library to construct the objects.
+    //动态属性
+    @Properties(prefix = "custom")
+    private Map properties;
+
     public void addActMovie(Movie movie) {
         if (this.aMovies == null) {
             this.aMovies = new ArrayList<>();

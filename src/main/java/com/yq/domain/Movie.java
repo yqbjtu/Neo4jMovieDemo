@@ -4,7 +4,9 @@ import lombok.NoArgsConstructor;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.typeconversion.DateString;
 
+import java.util.Date;
 /**
  *
  * @author yqbjtu
@@ -21,10 +23,14 @@ public class Movie{
     private String title;
     private String category;
     private int revenue;
+    //上映时间
+    @DateString("yyyy-MM-dd")
+    private Date date;
 
     public Movie (String title, String category, int revenue) {
         this.title = title;
         this.category = category;
         this.revenue = revenue;
+        this.date = new Date();
     }
 }

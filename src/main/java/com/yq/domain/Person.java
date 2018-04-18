@@ -18,7 +18,6 @@ import java.util.Map;
  */
 @lombok.Data
 //Entities handled by the OGM must have one empty public constructor to allow the library to construct the objects.
-@NoArgsConstructor
 @NodeEntity
 public class Person{
     @Id
@@ -28,12 +27,14 @@ public class Person{
     //Fields on the entity are by default mapped to properties of the node
     private String firstName;
     private String lastName;
-    private int height;
+    private Integer height;
 
     public Person (String firstName, String lastName, int height) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.height = height;
+    }
+    public Person () {
     }
     @JsonIgnoreProperties("models")
     @Relationship(type = "ACTED_IN", direction = Relationship.OUTGOING)
@@ -42,10 +43,6 @@ public class Person{
     //也就是演员指向电影
     @Relationship(type = "DIRECTED", direction = Relationship.OUTGOING)
     private List<Movie> dMovies;
-
-    //动态属性
-    @Properties(prefix = "custom")
-    private Map properties;
 
     public void addActMovie(Movie movie) {
         if (this.aMovies == null) {

@@ -14,7 +14,6 @@ import java.util.Date;
  */
 
 @lombok.Data
-@NoArgsConstructor
 @NodeEntity
 public class Movie{
     @Id
@@ -22,15 +21,14 @@ public class Movie{
     private Long id;
     private String title;
     private String category;
-    private int revenue;
-    //上映时间
-    @DateString("yyyy-MM-dd")
-    private Date date;
+    private Integer revenue;
+
 
     public Movie (String title, String category, int revenue) {
         this.title = title;
         this.category = category;
         this.revenue = revenue;
-        this.date = new Date();
+    }
+    public Movie () {
     }
 }

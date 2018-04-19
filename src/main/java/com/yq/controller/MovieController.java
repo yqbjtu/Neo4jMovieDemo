@@ -2,8 +2,8 @@ package com.yq.controller;
 
 import com.yq.domain.Movie;
 ;
+import com.yq.repository.CustomizedMovieRepositoryImpl;
 import com.yq.repository.MovieRepository;
-import com.yq.repository.MyCustomizedRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +30,9 @@ public class MovieController {
     }
 
     @GetMapping("/customized")
-    public String findCustomized() {
-        MyCustomizedRepo repo = new MyCustomizedRepo();
-        repo.getAllPerson();
-        return "customized";
+    public Iterable<Movie> findCustomized() {
+        return movieRepository.someCustomMethod();
+
     }
 
 }

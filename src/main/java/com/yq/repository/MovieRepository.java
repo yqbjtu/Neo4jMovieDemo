@@ -9,7 +9,7 @@ import java.util.Collection;
 
 /**
  */
-public interface MovieRepository extends Neo4jRepository<Movie, Long> {
+public interface MovieRepository extends Neo4jRepository<Movie, Long> , CustomizedMovieRepository{
 
 	Movie findByTitle(@Param("title") String title);
 

@@ -9,7 +9,7 @@ import java.util.Collection;
 
 /**
  */
-public interface PersonRepository extends Neo4jRepository<Person, Long> {
+public interface PersonRepository extends Neo4jRepository<Person, Long> , CustomizedRepository<Person> {
 
 	Person findByfirstName(@Param("firstName") String firstName);
 

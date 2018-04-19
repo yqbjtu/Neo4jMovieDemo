@@ -2,6 +2,7 @@
 package com.yq.repository;
 
 import com.yq.domain.Movie;
+import com.yq.domain.Person;
 import org.neo4j.ogm.model.Result;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
@@ -22,7 +23,7 @@ import java.util.Set;
  * @version 2018/4/18 19:42
  */
 @Repository
-public class CustomizedMovieRepositoryImpl  implements CustomizedMovieRepository {
+public class CustomizedMovieRepositoryImpl implements CustomizedMovieRepository {
 
     @Autowired
     protected Neo4jTransactionManager transactionMgr;
@@ -67,5 +68,49 @@ public class CustomizedMovieRepositoryImpl  implements CustomizedMovieRepository
     @Override
     public List<Movie> someCustomMethod() {
         return getAllMovie();
+    }
+
+    @Override
+    public Iterable<Movie> findUseClassMethod(Integer id) {
+        Session session = sessionFactory.openSession();
+        Iterable<Movie> result = null;
+        try ( Transaction transaction = session.beginTransaction()) {
+            //String cql = "MATCH (n:Movie)<-[]-(s) WHERE n.id= $id return n";
+            String cql = "MATCH (n:Movie)<-[]-(s) WHERE id(n)=$id  return n";
+            Map<String, Integer> map = new HashMap<>();
+            map.put("id", id);
+            result = session.query(Movie.class, cql, map);
+            System.out.println("end result:" + result);
+
+            transaction.commit();
+        } catch (Exception e) {
+            throw  e;
+        }
+
+        return result;
+    }
+    /*
+     *
+     */
+    @Override
+    public Iterable<Person> findPersonMethod(String name) {
+        Session session = sessionFactory.openSession();
+        Iterable<Person> result = null;
+        try ( Transaction transaction = session.beginTransaction()) {
+            //String cql = "MATCH (n:Movie)<-[]-(s) WHERE n.id= $id return n";
+            //MATCH (n:Person)-[]-(s) WHERE n.firstName=~'.*JingTia.*'  return n
+            String cql = "MATCH (n:Person)-[]-(s) WHERE n.firstName=$name" +
+                    " OR n.lastName=$name return n";
+            Map<String, String> map = new HashMap<>();
+            map.put("name", name);
+            result = session.query(Person.class, cql, map);
+            System.out.println("end result:" + result);
+
+            transaction.commit();
+        } catch (Exception e) {
+            throw  e;
+        }
+
+        return result;
     }
 }

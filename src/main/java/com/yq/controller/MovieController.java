@@ -2,6 +2,7 @@ package com.yq.controller;
 
 import com.yq.domain.Movie;
 ;
+import com.yq.domain.Person;
 import com.yq.repository.CustomizedMovieRepositoryImpl;
 import com.yq.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,15 @@ public class MovieController {
     @GetMapping("/customized")
     public Iterable<Movie> findCustomized() {
         return movieRepository.someCustomMethod();
-
     }
 
+    @GetMapping("/customizedFindById")
+    public Iterable<Movie> findCustomizedById(@RequestParam Integer id) {
+        return movieRepository.findUseClassMethod(id);
+    }
+
+    @GetMapping("/customizedFindPersonByName")
+    public Iterable<Person> customizedFindPersonByName(@RequestParam String name) {
+        return movieRepository.findPersonMethod(name);
+    }
 }

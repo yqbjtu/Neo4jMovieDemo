@@ -44,6 +44,11 @@ public class PersonController {
         return personService.findByNameLike(name);
     }
 
+    @GetMapping("/findById")
+    public Iterable<Person> findByNodeId(@RequestParam Integer id) {
+        return personRepository.findByNodeId(Person.class, id);
+    }
+
     @GetMapping("/all")
     public Iterable<Person> findAll() {
         return personRepository.findAll();

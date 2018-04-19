@@ -2,6 +2,7 @@
 package com.yq.repository;
 
 import com.yq.domain.Movie;
+import com.yq.domain.Person;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ import java.util.List;
  */
 public interface CustomizedMovieRepository {
     List<Movie>  someCustomMethod();
+    Iterable<Movie>  findUseClassMethod(Integer id);
+    Iterable<Person>  findPersonMethod(String name);
 }

@@ -1,5 +1,7 @@
 package com.yq;
 
+//import org.neo4j.ogm.config.ClasspathConfigurationSource;
+//import org.neo4j.ogm.config.ConfigurationSource;
 import org.neo4j.ogm.config.ClasspathConfigurationSource;
 import org.neo4j.ogm.config.ConfigurationSource;
 import org.neo4j.ogm.session.SessionFactory;
@@ -43,6 +45,8 @@ public class Application {
 		org.neo4j.ogm.config.Configuration configuration = new org.neo4j.ogm.config.Configuration.Builder(properties).build();
 		return configuration;
 	}
+
+
 
 	@Bean
 	public Neo4jTransactionManager transactionManager() {

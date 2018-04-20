@@ -41,7 +41,6 @@ public class CustomizedRepositoryImpl <T> implements CustomizedRepository <T>{
             String cql = "MATCH (n) WHERE id(n)=$id return n";
             Map<String, Integer> map = new HashMap<>();
             map.put("id", id);
-            //Type type = ((ParameterizedType)this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             result = session.query(objectType, cql, map);
             System.out.println("end result:" + result);
 

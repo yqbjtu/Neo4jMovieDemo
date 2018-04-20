@@ -2,10 +2,10 @@ package com.yq.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.NoArgsConstructor;
-//import org.neo4j.ogm.annotation.GeneratedValue;
-//import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-//import org.neo4j.ogm.annotation.Properties;
+import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ import java.util.Map;
 //Entities handled by the OGM must have one empty public constructor to allow the library to construct the objects.
 @NodeEntity
 public class Person{
-//    @Id
-//    @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     //Fields on the entity are by default mapped to properties of the node
